@@ -1,6 +1,10 @@
+import TextExpander from "@/app/_components/TextExpander";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { eachDayOfInterval } from "date-fns";
+import DateSelector from "@/app/_components/DateSelector";
+import ReservationForm from "@/app/_components/ReservationForm";
 
 // export const metadata = { title: "Cabin" };
 
@@ -43,7 +47,9 @@ export default async function Page({ params }) {
             Cabin {name}
           </h3>
 
-          <p className="text-lg text-primary-300 mb-10">{description}</p>
+          <p className="text-lg text-primary-300 mb-10">
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className="flex flex-col gap-4 mb-7">
             <li className="flex gap-3 items-center">
@@ -72,8 +78,13 @@ export default async function Page({ params }) {
 
       <div>
         <h2 className="text-5xl font-semibold text-center">
-          Reserve today. Pay on arrival.
+          Reserve {name} today. Pay on arrival.
         </h2>
+
+        <div>
+          <DateSelector />
+          <ReservationForm />
+        </div>
       </div>
     </div>
   );
